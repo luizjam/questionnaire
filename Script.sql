@@ -53,6 +53,6 @@ create table tb_grupamentos(
 cd_grupamento int unsigned not null auto_increment primary key,
 cd_empresa int not null,
 cd_pergunta int not null,
-constraint fk_empgru foreign key(cd_empresa) references tb_empresas(cd_empresa),
-constraint fl_pergru foreign key(cd_pergunta) references tb_perguntas(cd_pergunta))
-engine = innodb character set UTF8 collate utf8_general_ci; 
+key fk_emp(cd_empresa),
+key fk_per(cd_pergunta))
+engine = innodb character set UTF8 collate utf8_general_ci;
