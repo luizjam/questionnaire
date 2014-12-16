@@ -21,7 +21,7 @@ class EmpresasController extends AppController
         $this->set('empresas', $this->Empresa->find('all'));
     }
     
-    public function view()
+    public function view($id = null)
     {
         if(!$id)
         {
@@ -34,5 +34,19 @@ class EmpresasController extends AppController
             throw new NotFoundException(__('Empresa inválida'));
         }
         $this->set('empresa', $empresa);
+    }
+    
+    public function add()
+    {
+        if($this->request->is('empresa'))
+        {
+            $this->Empresa->create();
+            if($this->Empresa->save($this->request->data))
+            {
+                $this->Session->setFlash(__('Empresa salva.'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Impossível salvar empresa.'));
+        }
     }
 }
