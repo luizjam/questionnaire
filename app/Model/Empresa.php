@@ -25,6 +25,38 @@ class Empresa extends AppModel
                 'allowEmpty' => 'false',
                 'message' => 'Informe o nome da empresa.'
             )
+        ),
+        'ds_cnpj' => array(
+            'numeric' => array(
+                'rule' => 'numeric',
+                'required' => 'true',
+                'allowEmpty' => 'false',
+                'message' => 'Somente números.'
+            )
+        ),
+        'ds_logradouro' => array(
+            'alphaNumeric' => array(
+                'rule' => 'alphaNumeric',
+                'required' => 'true',
+                'allowEmpty' => 'false',
+                'message' => 'Informe o endereço.'
+            )
+        ),
+        'ds_bairro' => array(
+            'alphaNumeric' => array(
+                'rule' => 'alphaNumeric',
+                'required' => 'true',
+                'allowEmpty' => 'false',
+                'message' => 'Informe o bairro.'
+            )
+        ),
+        'ds_cidade' => array(
+            'alphaNumeric' => array(
+                'rule' => 'alphaNumeric',
+                'required' => 'true',
+                'allowEmpty' => 'false',
+                'message' => 'Informe a cidade.'
+            )
         )
     );
 }

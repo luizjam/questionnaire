@@ -1,6 +1,6 @@
 <h1>Adicionar Empresa</h1>
 <?php
-    echo $this->Form->create('Empresa');
+    echo $this->Form->create('Empresa', array('type' => 'get'));
     echo $this->Form->input('nm_empresa');
     echo $this->Form->input('ds_cnpj');
     echo $this->Form->input('ds_logradouro');
