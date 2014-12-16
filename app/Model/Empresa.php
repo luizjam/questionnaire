@@ -16,4 +16,15 @@ class Empresa extends AppModel
     public $name = 'Empresa';
     public $useTable = 'tb_empresas';
     public $primaryKey = 'cd_empresa';
+    
+    public $validate = array(
+        'nm_empresa' => array(
+            'alphaNumeric' => array(
+                'rule' => 'alphaNumeric',
+                'required' => 'true',
+                'allowEmpty' => 'false',
+                'message' => 'Informe o nome da empresa.'
+            )
+        )
+    );
 }
