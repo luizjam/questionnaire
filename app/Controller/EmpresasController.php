@@ -38,8 +38,9 @@ class EmpresasController extends AppController
     
     public function add()
     {
-        if($this->request->is('empresa'))
+        if($this->request->is('post'))
         {
+        //    debug($this->request(data));
             $this->Empresa->create();
             if($this->Empresa->save($this->request->data))
             {

@@ -19,6 +19,10 @@ class Empresa extends AppModel
     
     public $validate = array(
         'nm_empresa' => array(
+            'vazio' => array(
+                'rule' => 'notEmpty',
+                'message' => 'Informação necessária.'
+            ),
             'alphaNumeric' => array(
                 'rule' => 'alphaNumeric',
                 'required' => 'true',
