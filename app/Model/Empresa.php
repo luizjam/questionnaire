@@ -19,47 +19,46 @@ class Empresa extends AppModel
     
     public $validate = array(
         'nm_empresa' => array(
-            'vazio' => array(
+            'nomeEmpresa' => array(
                 'rule' => 'notEmpty',
                 'message' => 'Informação necessária.'
-            ),
-            'alphaNumeric' => array(
-                'rule' => 'alphaNumeric',
-                'required' => 'true',
-                'allowEmpty' => 'false',
-                'message' => 'Informe o nome da empresa.'
             )
         ),
         'ds_cnpj' => array(
-            'numeric' => array(
-                'rule' => 'numeric',
+            'cnpj' => array(
+                'rule' => '/^[0-9]{14}$/i',
                 'required' => 'true',
-                'allowEmpty' => 'false',
-                'message' => 'Somente números.'
+                'message' => 'Informe o CNPJ no formato 99999999999999.'
+            ),
+            'cnpj2' => array(
+                'rule' => 'isUnique',
+                'message' => 'Empresa já cadastrada'
             )
         ),
         'ds_logradouro' => array(
-            'alphaNumeric' => array(
-                'rule' => 'alphaNumeric',
+            'endereco' => array(
+                'rule' => 'notEmpty',
                 'required' => 'true',
-                'allowEmpty' => 'false',
                 'message' => 'Informe o endereço.'
             )
         ),
         'ds_bairro' => array(
-            'alphaNumeric' => array(
-                'rule' => 'alphaNumeric',
-                'required' => 'true',
-                'allowEmpty' => 'false',
+            'bairro' => array(
+                'rule' => 'notEmpty',
                 'message' => 'Informe o bairro.'
             )
         ),
         'ds_cidade' => array(
-            'alphaNumeric' => array(
-                'rule' => 'alphaNumeric',
-                'required' => 'true',
-                'allowEmpty' => 'false',
+            'cidade' => array(
+                'rule' => 'notEmpty',
                 'message' => 'Informe a cidade.'
+            )
+        ),
+        'ds_cep' => array(
+            'cep_br' => array(
+                'rule' => '/^[0-9]{8}$/i',
+                'required' => 'true',
+                'message' => 'Informe o CEP no formato 99999999'
             )
         )
     );

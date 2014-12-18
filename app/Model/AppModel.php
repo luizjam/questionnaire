@@ -30,4 +30,13 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+    public function validateFone($fone)
+    {
+        return preg_match('^\d{2}\d{2}\d{4}\d{4}$', array_shift($fone));
+    }
+    
+    public function validateCPF($cpf)
+    {
+        return preg_match('^\d{11}$', array_shift($cpf));
+    }
 }
