@@ -63,3 +63,6 @@ describe tb_representantes;
 -- alterar o tamanho das colunas ds_fone e ds_celular
 ALTER TABLE  tb_representantes CHANGE  ds_celular  ds_celular VARCHAR(17) 
 CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+
+-- alterar a tb_representante cd_empresa de not null p/ null
+alter table tb_representantes modify cd_empresa int unsigned null; 
