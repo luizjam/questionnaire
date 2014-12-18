@@ -17,6 +17,25 @@ ds_cep char(8) not null,
 ds_fone varchar(13) null)
 engine = innodb character set utf8 collate utf8_general_ci;
 
+-- criar a tabela grupos para utilizar o ACL
+create table groups(
+id int unsigned not null auto_increment primary key,
+name varchar(50) not null,
+created datetime,
+modified datetime)
+engine = innodb character set utf8 collate utf8_general_ci;
+
+-- criar a tabela user para o utilizar o ACL
+create table users(
+id int unsigned not null auto_increment primary key,
+username varchar(50) not null unique,
+password char(20) not null,
+group_id int unsigned not null,
+created datetime,
+modified datetime,
+constraint fk_grouse foreign key(group_id) references groups(id))
+engine = innodb character set utf8 collate utf8_general_ci;
+
 -- criar tabela representantes
 create table tb_representantes(
 cd_representante int unsigned not null default null auto_increment primary key,
@@ -26,6 +45,7 @@ ds_email varchar(100) not null,
 ds_fone char(13) not null,
 ds_celular char(14) not null,
 cd_empresa int unsigned null,
+user_id int unsigned null,
 constraint fk_emprep foreign key(cd_empresa) references tb_empresas(cd_empresa))
 engine = innodb character set utf8 collate utf8_general_ci;
 
@@ -65,4 +85,10 @@ ALTER TABLE  tb_representantes CHANGE  ds_celular  ds_celular VARCHAR(17)
 CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 
 -- alterar a tb_representante cd_empresa de not null p/ null
-alter table tb_representantes modify cd_empresa int unsigned null; 
+alter table tb_representantes modify cd_empresa int unsigned null;
+
+-- alterar a tb_representantes incluir user_id depois de cd_empresa
+alter table tb_representantes add user_id int unsigned null
+after cd_empresa;
+
+ 
