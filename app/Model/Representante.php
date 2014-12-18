@@ -21,10 +21,6 @@ class Representante extends AppModel{
             'nomeRepresentante' => array(
                 'rule' => 'notEmpty',
                 'message' => 'Campo obrigatório.'
-            ),
-            'nomeRepresentante2' => array(
-                'rule' => 'alphaNumeric',
-                'message' => 'Caracteres especiais não permitidos.'
             )
         ),
         'ds_cpf' => array(
@@ -47,7 +43,7 @@ class Representante extends AppModel{
         ),
         'ds_fone' => array(
             'celular' => array(
-                'rule' => 'validateCel',
+                'rule' => 'validateFone',
                 'message' => 'Informe o celular seguingo o ex: 55139918803272'
             )
         )
