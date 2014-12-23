@@ -32,11 +32,11 @@ App::uses('Model', 'Model');
 class AppModel extends Model {
     public function validateFone($fone)
     {
-        return preg_match('^\d{2}\d{2}\d{4}\d{4}$', array_shift($fone));
+        return preg_match('/^([0-9]{3}\([0-9]{2}\)[0-9]{4,5}\-[0-9]{4})$/i', array_shift($fone));
     }
     
     public function validateCPF($cpf)
     {
-        return preg_match('^\d{11}$', array_shift($cpf));
+        return preg_match('/^\d{11}$/i', array_shift($cpf));
     }
 }

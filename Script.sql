@@ -25,7 +25,7 @@ ds_cpf char(11) not null,
 ds_email varchar(100) not null,
 ds_fone char(13) not null,
 ds_celular char(14) not null,
-cd_empresa int unsigned not null,
+cd_empresa int unsigned null,
 constraint fk_emprep foreign key(cd_empresa) references tb_empresas(cd_empresa))
 engine = innodb character set utf8 collate utf8_general_ci;
 
@@ -56,3 +56,10 @@ cd_pergunta int not null,
 key fk_emp(cd_empresa),
 key fk_per(cd_pergunta))
 engine = innodb character set UTF8 collate utf8_general_ci;
+
+-- descrever tabela representantes
+describe tb_representantes;
+
+-- alterar o tamanho das colunas ds_fone e ds_celular
+ALTER TABLE  tb_representantes CHANGE  ds_celular  ds_celular VARCHAR(17) 
+CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
