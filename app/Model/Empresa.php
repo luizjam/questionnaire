@@ -62,4 +62,20 @@ class Empresa extends AppModel
             )
         )
     );
+    
+    public $hasMany = array(
+        'Representante' => array(
+            'className' => 'Representante',
+            'foreignKey' => 'cd_empresa',
+            'dependent' => false,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        )
+    );
 }

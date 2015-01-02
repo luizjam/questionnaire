@@ -69,8 +69,8 @@ class User extends AppModel {
  * @var array
  */
 	public $hasOne = array(
-		'TbRepresentante' => array(
-			'className' => 'TbRepresentante',
+		'Representante' => array(
+			'className' => 'Representante',
 			'foreignKey' => 'user_id',
 			'conditions' => '',
 			'fields' => '',

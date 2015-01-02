@@ -38,14 +38,21 @@ class Representante extends AppModel{
         'ds_fone' => array(
             'fone' => array(
                 'rule' => 'validateFone',
-                'message' => 'Informe o telefone seguindo o ex: 551334461910'
+                'message' => 'Informe o telefone seguindo o ex: 055(13)3446-1910'
             )
         ),
-        'ds_fone' => array(
+        'ds_celular' => array(
             'celular' => array(
                 'rule' => 'validateFone',
-                'message' => 'Informe o celular seguingo o ex: 55139918803272'
+                'message' => 'Informe o celular seguingo o ex: 055(13)99188-0327'
             )
+        )
+    );
+    
+    public $belongsTo = array(
+        'Empresa' => array(
+            'className' => 'Empresa',
+            'foreignKey' => 'cd_empresa'
         )
     );
 }
