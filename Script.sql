@@ -91,4 +91,24 @@ alter table tb_representantes modify cd_empresa int unsigned null;
 alter table tb_representantes add user_id int unsigned null
 after cd_empresa;
 
- 
+-- criar a tabela de editais da companhia
+create table tb_editais(
+cd_edital int unsigned not null auto_increment primary key,
+nm_edital varchar(100) not null,
+cd_processo int null unique,
+dt_publicacao date not null,
+dt_iniciovisita datetime null,
+dt_fimvisita datetime null)
+engine = innodb character set UTF8 collate utf8_general_ci;
+
+-- criar a tabela de resolução entre tb_empresas e tb_editais
+create table tb_licitantes(
+cd_licitante int unsigned not null auto_increment primary key,
+cd_empresa int unsigned not null,
+cd_edital int unsigned not null,
+constraint fk_emplic foreign key(cd_empresa) references tb_empresas(cd_empresa),
+constraint fk_edilic foreign key(cd_edital) references tb_editais(cd_edital))
+engine = innodb character set utf8 collate utf8_general_ci;
+
+
+show tables;
