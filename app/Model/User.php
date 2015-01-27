@@ -92,4 +92,16 @@ class User extends AppModel {
 			'order' => ''
 		)
 	);
+        
+/**
+ * hasMany associations
+ * 
+ * $var array
+ */
+        public $hasMany = array(
+            'Edital' => array(
+                'className' => 'Edital',
+                'foreignKey' => 'user_id'
+            )
+        ); 
 }

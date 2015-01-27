@@ -28,7 +28,7 @@ class RepresentantesController extends AppController{
         }
         
         $representante = $this->Representante->findById($id);
-        if(!representante)
+        if(!$representante)
         {
             throw new NotFoundException(__('Código de representante inválido.'));
         }

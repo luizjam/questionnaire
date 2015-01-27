@@ -101,6 +101,13 @@ dt_iniciovisita datetime null,
 dt_fimvisita datetime null)
 engine = innodb character set UTF8 collate utf8_general_ci;
 
+-- alterar a tabela tb_editais para adicionar camou do usuário responsável
+-- pelo cadastro do Edital
+alter table tb_editais add user_id int unsigned not null after cd_edital;
+
+-- adicionar constraint fk_useedi
+alter table tb_editais add constraint fk_useedi foreign key(user_id) references users(id);
+
 -- criar a tabela de resolução entre tb_empresas e tb_editais
 create table tb_licitantes(
 cd_licitante int unsigned not null auto_increment primary key,
@@ -111,4 +118,4 @@ constraint fk_edilic foreign key(cd_edital) references tb_editais(cd_edital))
 engine = innodb character set utf8 collate utf8_general_ci;
 
 
-show tables;
+describe tb_editais;
