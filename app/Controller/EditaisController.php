@@ -17,7 +17,9 @@ class EditaisController extends AppController{
     
     public function index()
     {
-        $this->set('editais', $this->Editais->find('all'));
+        $this->set('editais', $this->Edital->find('all'));
+//        $users = $this->Edital->User->find('list');
+//        $this->set(compact('users'));
     }
     
     public function view($id = null)
@@ -33,7 +35,7 @@ class EditaisController extends AppController{
             throw new NotFoundException(__('Edital inválido.'));
         }
         
-        $this->set('edital', $empresa);
+        $this->set('edital', $edital);
     }
     
     public function add()
@@ -49,6 +51,8 @@ class EditaisController extends AppController{
             }
             $this->Session->setFlash(__('Impossível salvar edital.'));
         }
+        $users = $this->Edital->User->find('list');
+        $this->set(compact('users'));
     }
              
 }
