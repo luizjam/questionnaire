@@ -68,6 +68,10 @@ dt_expediente datetime default null,
 ds_palavraChave varchar(30) not null)
 engine = innodb character set UTF8 collate utf8_general_ci;
 
+-- alterar a tb_perguntas acrescentando coluna user_id e adicionar fk_useper
+alter table tb_perguntas add user_id int unsigned not null after cd_pergunta;
+alter table tb_perguntas add constraint fk_useper foreign key(user_id) references users(id);
+
 -- criar a tablela de grupamento das perguntas x empresas
 create table tb_grupamentos(
 cd_grupamento int unsigned not null auto_increment primary key,
@@ -104,6 +108,9 @@ engine = innodb character set UTF8 collate utf8_general_ci;
 -- alterar a tabela tb_editais para adicionar camou do usuário responsável
 -- pelo cadastro do Edital
 alter table tb_editais add user_id int unsigned not null after cd_edital;
+
+-- alterar a tabela tb_editais para alterar o o tipo do campo cd_processo para texto.
+alter table tb_editais modify cd_processo varchar(12) null;
 
 -- adicionar constraint fk_useedi
 alter table tb_editais add constraint fk_useedi foreign key(user_id) references users(id);

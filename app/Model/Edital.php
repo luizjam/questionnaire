@@ -31,4 +31,6 @@ class Edital extends AppModel{
             'foreignKey' => 'user_id'
         )
     );
+    
+    
 }

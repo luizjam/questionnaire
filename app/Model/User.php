@@ -6,8 +6,9 @@ App::uses('AppModel', 'Model');
  * @property TbRepresentante $TbRepresentante
  * @property Group $Group
  */
-class User extends AppModel {
-
+class User extends AppModel 
+{
+    public $useTable = 'users';
 /**
  * Display field
  *
