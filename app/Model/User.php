@@ -103,6 +103,10 @@ class User extends AppModel
             'Edital' => array(
                 'className' => 'Edital',
                 'foreignKey' => 'user_id'
+            ),
+            'Pergunta' => array(
+                'className' => 'Pergunta',
+                'foreignKey' => 'user_id'
             )
         ); 
 }

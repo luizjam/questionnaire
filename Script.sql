@@ -1,3 +1,4 @@
+
 -- criar base de dados
 create database db_questionnaire default character set utf8 collate utf8_general_ci;
 
@@ -72,6 +73,10 @@ engine = innodb character set UTF8 collate utf8_general_ci;
 alter table tb_perguntas add user_id int unsigned not null after cd_pergunta;
 alter table tb_perguntas add constraint fk_useper foreign key(user_id) references users(id);
 
+--alterar a tb_perguntas acrescentando coluna cd_edital e adicionar fk_ediper
+alter table tb_perguntas add cd_edital int unsigned not null after cd_pergunta;
+alter table tb_perguntas add constraint fk_ediper foreign key(cd_edital) references 
+tb_editais(cd_edital);
 -- criar a tablela de grupamento das perguntas x empresas
 create table tb_grupamentos(
 cd_grupamento int unsigned not null auto_increment primary key,

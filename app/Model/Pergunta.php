@@ -7,21 +7,21 @@
  */
 
 /**
- * Description of Editais
+ * Description of Pergunta
  *
  * @author luizcarlos.fonseca
  */
-class Edital extends AppModel{
-    public $name = 'Edital';
-    public $useTable = 'tb_editais';
-    public $primaryKey = 'cd_edital';
+class Pergunta extends AppModel
+{
+    //put your code here
+    public $name = 'Pergunta';
+    public $useTable = 'tb_perguntas';
+    public $primaryKey = 'cd_pergunta';
     
     public $validate = array(
-        'nm_edital' => array(
-            'nomeEdital' => array(
-                'rule' => 'notEmpty',
-                'message' => 'Campo obrigatório.'
-            )
+        'ds_titulo' => array(
+            'rule' => 'notEmpty',
+            'message' => 'Campo obrigatório.'
         )
     );
     
@@ -29,14 +29,10 @@ class Edital extends AppModel{
         'User' => array(
             'className' => 'User',
             'foreignKey' => 'user_id'
-        )
-    );
-    
-    public $hasMany = array(
-        'Pergunta' => array(
-            'className' => 'Pergunta',
+        ),
+        'Edital' => array(
+            'className' => 'Edital',
             'foreignkey' => 'cd_edital'
         )
     );
-    
 }
