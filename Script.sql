@@ -129,5 +129,17 @@ constraint fk_emplic foreign key(cd_empresa) references tb_empresas(cd_empresa),
 constraint fk_edilic foreign key(cd_edital) references tb_editais(cd_edital))
 engine = innodb character set utf8 collate utf8_general_ci;
 
+-- criar tabela tb_respostas
+create table tb_respostas(
+cd_resposta int unsigned not null auto_increment primary key,
+user_id int unsigned not null,
+cd_pergunta int unsigned not null,
+ds_resposta text null,
+ic_status enum('A', 'R') default null, -- (A)provada, (R)erprovada
+created datetime,
+modified datetime,
+constraint fk_useres foreign key(user_id) references users(id),
+constraint fk_perres foreign key(cd_pergunta) references tb_perguntas(cd_pergunta))
+engine = innodb character set utf8 collate utf8_general_ci;
 
-describe tb_editais;
+describe tb_respostas;
