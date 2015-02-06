@@ -35,7 +35,7 @@ class Edital extends AppModel{
     public $hasMany = array(
         'Pergunta' => array(
             'className' => 'Pergunta',
-            'foreignkey' => 'cd_edital'
+            'foreignKey' => 'cd_edital'
         )
     );
     

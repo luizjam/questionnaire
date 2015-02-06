@@ -129,6 +129,10 @@ constraint fk_emplic foreign key(cd_empresa) references tb_empresas(cd_empresa),
 constraint fk_edilic foreign key(cd_edital) references tb_editais(cd_edital))
 engine = innodb character set utf8 collate utf8_general_ci;
 
+-- alterar a tb_licitantes adicionar as colunas created e mofified
+alter table tb_licitantes add created datetime null after cd_edital;
+alter table tb_licitantes add modified datetime null after created;
+
 -- criar tabela tb_respostas
 create table tb_respostas(
 cd_resposta int unsigned not null auto_increment primary key,

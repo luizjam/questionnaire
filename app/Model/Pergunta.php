@@ -32,7 +32,7 @@ class Pergunta extends AppModel
         ),
         'Edital' => array(
             'className' => 'Edital',
-            'foreignkey' => 'cd_edital'
+            'foreignKey' => 'cd_edital'
         )
     );
 }
