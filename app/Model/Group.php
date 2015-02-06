@@ -13,6 +13,13 @@ class Group extends AppModel {
  * @var string
  */
 	public $displayField = 'name';
+        
+        public $actAs = array('Acl' => array('type' => 'requester'));
+        
+        public function parentNode()
+        {
+            return null;
+        }
 
 /**
  * Validation rules

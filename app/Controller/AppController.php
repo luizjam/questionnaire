@@ -45,20 +45,19 @@ class AppController extends Controller
 
     public $helpers = array('Html', 'Form', 'Session');
 
-    public function beforeFilter() 
-    {
+        public function beforeFilter() {
+        //Configure AuthComponent
         $this->Auth->loginAction = array(
-            'controller' => 'users',
-            'action' => 'login'
+          'controller' => 'users',
+          'action' => 'login'
         );
         $this->Auth->logoutRedirect = array(
-            'controllers' => 'users',
-            'action' => 'login'
+          'controller' => 'users',
+          'action' => 'login'
         );
         $this->Auth->loginRedirect = array(
-            'controller' => 'esitais',
-            'action' => 'index'
+          'controller' => 'empresas',
+          'action' => 'add'
         );
-
     }
 }

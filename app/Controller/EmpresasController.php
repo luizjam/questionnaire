@@ -14,7 +14,7 @@
 class EmpresasController extends AppController
 {
     public $name = 'Empresas';
-    public $helpers = array('Html', 'Form', 'Session');
+    //public $helpers = array('Html', 'Form', 'Session');
     
     public function index()
     {

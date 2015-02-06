@@ -40,7 +40,7 @@ class UsersController extends AppController
  *
  * @return void
  */
-    public function addRepresentante() {
+    public function add() {
             if ($this->request->is('post')) {
                     $this->User->create();
                     if ($this->User->saveAll($this->request->data)) {
