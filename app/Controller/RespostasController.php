@@ -38,13 +38,21 @@ class RespostasController extends AppController
     
     public function add()
     {
-        $this->Resposta->create();
-        if($this->Resposta->save($this->request->data))
+        if($this->request->is('post'))
         {
-            $this->Session->setFlash(__('Resposta salva.'));
-            return $this->redirect(array('action' => 'index'));
+            $this->Resposta->create();
+            if($this->Resposta->save($this->request->data))
+            {
+                $this->Session->setFlash(__('Resposta salva.'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Impossível salvar resposta.'));
         }
-        $this->Session->setFlash(__('Impossível salvar resposta.'));
+        $users = $this->Resposta->User->find('list');
+        $this->set(compact('users'));
+        
+        $perguntas = $this->Resposta->Pergunta->find('list');
+        $this->set(compact('pertuntas'));
     }
     
 }

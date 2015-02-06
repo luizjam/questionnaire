@@ -14,8 +14,9 @@
 class Resposta extends AppModel
 {
     public $useTable = 'tb_respostas';
+    public $primaryKey = 'cd_resposta';
     public $displayField = 'Resposta';
-    
+        
     public $belongsTo = array(
         'User' => array(
             'className' => 'User',

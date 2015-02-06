@@ -142,4 +142,12 @@ constraint fk_useres foreign key(user_id) references users(id),
 constraint fk_perres foreign key(cd_pergunta) references tb_perguntas(cd_pergunta))
 engine = innodb character set utf8 collate utf8_general_ci;
 
-describe tb_respostas;
+describe tb_perguntas;
+
+select * from tb_editais;
+
+SELECT `Edital`.`cd_edital`, `Edital`.`user_id`, `Edital`.`nm_edital`, `Edital`.`cd_processo`,
+ `Edital`.`dt_publicacao`, `Edital`.`dt_iniciovisita`, `Edital`.`dt_fimvisita`,
+ `User`.`id`, `User`.`username`, `User`.`password`, `User`.`group_id`, `User`.`created`, `User`.`modified` 
+FROM `db_questionnaire`.`tb_editais` AS `Edital` LEFT JOIN `db_questionnaire`.`users` AS `User` 
+ON (`Edital`.`user_id` = `User`.`id`) WHERE 1 = 1
