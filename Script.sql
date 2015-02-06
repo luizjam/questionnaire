@@ -69,6 +69,10 @@ CREATE INDEX idx_aros_alias ON `aros` (`alias`);
 
 CREATE INDEX idx_aco_id ON `aros_acos` (`aco_id`);
 
+drop table aros_acos;
+drop table aros;
+drop table acos;
+
 -- criar tabela Empresa
 create table tb_empresas(
 cd_empresa int unsigned not null default null auto_increment primary key,
@@ -195,7 +199,20 @@ describe tb_perguntas;
 
 select * from tb_editais;
 
+delete from tb_representantes;
+select * from tb_representantes;
+alter table tb_representantes auto_increment = 1;
+
+delete from users;
 select * from users;
+alter table users auto_increment = 1;
+select * from users;
+
+delete from groups;
+alter table groups auto_increment = 1;
+select * from groups;
+
+select * from acos;
 
 SELECT `Edital`.`cd_edital`, `Edital`.`user_id`, `Edital`.`nm_edital`, `Edital`.`cd_processo`,
  `Edital`.`dt_publicacao`, `Edital`.`dt_iniciovisita`, `Edital`.`dt_fimvisita`,
