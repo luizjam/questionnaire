@@ -7,6 +7,8 @@
 # Redistributions of files must retain the above copyright notice.
 # MIT License (http://www.opensource.org/licenses/mit-license.php)
 
+use db_questionnaire;
+
 CREATE TABLE acos (
   id INTEGER(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   parent_id INTEGER(10) DEFAULT NULL,

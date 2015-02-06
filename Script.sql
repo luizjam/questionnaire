@@ -5,19 +5,6 @@ create database db_questionnaire default character set utf8 collate utf8_general
 -- utilizar a base de dados criada
 Use db_questionnaire;
 
--- criar tabela Empresa
-create table tb_empresas(
-cd_empresa int unsigned not null default null auto_increment primary key,
-nm_empresa varchar(100) not null,
-ds_cnpj char(14) not null,
-ds_logradouro varchar(100) not null,
-ds_bairro varchar(50) not null,
-ds_cidade varchar(50) not null,
-sg_uf char(2) not null,
-ds_cep char(8) not null,
-ds_fone varchar(13) null)
-engine = innodb character set utf8 collate utf8_general_ci;
-
 -- criar a tabela grupos para utilizar o ACL
 create table groups(
 id int unsigned not null auto_increment primary key,
@@ -35,6 +22,64 @@ group_id int unsigned not null,
 created datetime,
 modified datetime,
 constraint fk_grouse foreign key(group_id) references groups(id))
+engine = innodb character set utf8 collate utf8_general_ci;
+
+
+CREATE TABLE acos (
+  id INTEGER(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  parent_id INTEGER(10) DEFAULT NULL,
+  model VARCHAR(255) DEFAULT '',
+  foreign_key INTEGER(10) UNSIGNED DEFAULT NULL,
+  alias VARCHAR(255) DEFAULT '',
+  lft INTEGER(10) DEFAULT NULL,
+  rght INTEGER(10) DEFAULT NULL,
+  PRIMARY KEY  (id)
+);
+
+CREATE TABLE aros_acos (
+  id INTEGER(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  aro_id INTEGER(10) UNSIGNED NOT NULL,
+  aco_id INTEGER(10) UNSIGNED NOT NULL,
+  _create CHAR(2) NOT NULL DEFAULT 0,
+  _read CHAR(2) NOT NULL DEFAULT 0,
+  _update CHAR(2) NOT NULL DEFAULT 0,
+  _delete CHAR(2) NOT NULL DEFAULT 0,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE aros (
+  id INTEGER(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  parent_id INTEGER(10) DEFAULT NULL,
+  model VARCHAR(255) DEFAULT '',
+  foreign_key INTEGER(10) UNSIGNED DEFAULT NULL,
+  alias VARCHAR(255) DEFAULT '',
+  lft INTEGER(10) DEFAULT NULL,
+  rght INTEGER(10) DEFAULT NULL,
+  PRIMARY KEY  (id)
+);
+
+/* this indexes will improve acl perfomance */
+CREATE INDEX idx_acos_lft_rght ON `acos` (`lft`, `rght`);
+
+CREATE INDEX idx_acos_alias ON `acos` (`alias`);
+
+CREATE INDEX idx_aros_lft_rght ON `aros` (`lft`, `rght`);
+
+CREATE INDEX idx_aros_alias ON `aros` (`alias`);
+
+CREATE INDEX idx_aco_id ON `aros_acos` (`aco_id`);
+
+-- criar tabela Empresa
+create table tb_empresas(
+cd_empresa int unsigned not null default null auto_increment primary key,
+nm_empresa varchar(100) not null,
+ds_cnpj char(14) not null,
+ds_logradouro varchar(100) not null,
+ds_bairro varchar(50) not null,
+ds_cidade varchar(50) not null,
+sg_uf char(2) not null,
+ds_cep char(8) not null,
+ds_fone varchar(13) null)
 engine = innodb character set utf8 collate utf8_general_ci;
 
 -- criar tabela representantes
@@ -149,6 +194,8 @@ engine = innodb character set utf8 collate utf8_general_ci;
 describe tb_perguntas;
 
 select * from tb_editais;
+
+select * from users;
 
 SELECT `Edital`.`cd_edital`, `Edital`.`user_id`, `Edital`.`nm_edital`, `Edital`.`cd_processo`,
  `Edital`.`dt_publicacao`, `Edital`.`dt_iniciovisita`, `Edital`.`dt_fimvisita`,

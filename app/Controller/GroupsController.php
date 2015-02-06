@@ -14,9 +14,10 @@ class GroupsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
-
-/**
+    public $components = array('Paginator', 'Session');
+    public $actsAs = array('Acl' => array('type' => 'requester'));
+    
+/*
  * index method
  *
  * @return void
@@ -89,17 +90,29 @@ class GroupsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
-		$this->Group->id = $id;
-		if (!$this->Group->exists()) {
-			throw new NotFoundException(__('Invalid group'));
-		}
-		$this->request->allowMethod('post', 'delete');
-		if ($this->Group->delete()) {
-			$this->Session->setFlash(__('The group has been deleted.'));
-		} else {
-			$this->Session->setFlash(__('The group could not be deleted. Please, try again.'));
-		}
-		return $this->redirect(array('action' => 'index'));
-	}
+    public function delete($id = null) 
+    {
+        $this->Group->id = $id;
+        if (!$this->Group->exists()) {
+                throw new NotFoundException(__('Invalid group'));
+        }
+        $this->request->allowMethod('post', 'delete');
+        if ($this->Group->delete()) {
+                $this->Session->setFlash(__('The group has been deleted.'));
+        } else {
+                $this->Session->setFlash(__('The group could not be deleted. Please, try again.'));
+        }
+        return $this->redirect(array('action' => 'index'));
+    }
+        
+    public function beforeFilter() 
+    {
+        parent::beforeFilter();
+        $this->Auth->allow();
+    }
+        
+    public function parentNode()
+    {
+        return null;
+    }
 }
