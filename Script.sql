@@ -206,13 +206,14 @@ alter table tb_representantes auto_increment = 1;
 delete from users;
 select * from users;
 alter table users auto_increment = 1;
-select * from users;
 
 delete from groups;
 alter table groups auto_increment = 1;
 select * from groups;
 
-select * from acos;
+delete from aros;
+select * from aros;
+alter table aros auto_increment = 1;
 
 SELECT `Edital`.`cd_edital`, `Edital`.`user_id`, `Edital`.`nm_edital`, `Edital`.`cd_processo`,
  `Edital`.`dt_publicacao`, `Edital`.`dt_iniciovisita`, `Edital`.`dt_fimvisita`,
