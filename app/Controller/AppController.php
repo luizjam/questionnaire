@@ -45,7 +45,8 @@ class AppController extends Controller
 
     public $helpers = array('Html', 'Form', 'Session');
 
-        public function beforeFilter() {
+    public function beforeFilter() 
+    {
         //Configure AuthComponent
         $this->Auth->loginAction = array(
           'controller' => 'users',

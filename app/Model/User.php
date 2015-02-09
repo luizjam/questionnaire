@@ -16,7 +16,7 @@ class User extends AppModel
  */
     public $displayField = 'username';
     
-    public $actAs = array('Acl' => array('type' => 'requester', 'enable' => 'false'));
+    public $actAs = array('Acl' => array('type' => 'requester'));
 
 /**
  * Validation rules
@@ -132,11 +132,14 @@ class User extends AppModel
         if (!$groupId) {
             return null;
         }
-        return array('Group' => array('id' => $groupId));
+        else
+        {
+            return array('Group' => array('id' => $groupId));
+        }
     }
     
-    public function bindNode($user) 
-    {
-        return array('model' => 'Group', 'foreign_key' => $user['User']['group_id']);
-    }
+//    public function bindNode($user) 
+//    {
+//        return array('model' => 'Group', 'foreign_key' => $user['User']['group_id']);
+//    }
 }

@@ -219,4 +219,6 @@ SELECT `Edital`.`cd_edital`, `Edital`.`user_id`, `Edital`.`nm_edital`, `Edital`.
  `Edital`.`dt_publicacao`, `Edital`.`dt_iniciovisita`, `Edital`.`dt_fimvisita`,
  `User`.`id`, `User`.`username`, `User`.`password`, `User`.`group_id`, `User`.`created`, `User`.`modified` 
 FROM `db_questionnaire`.`tb_editais` AS `Edital` LEFT JOIN `db_questionnaire`.`users` AS `User` 
-ON (`Edital`.`user_id` = `User`.`id`) WHERE 1 = 1
+ON (`Edital`.`user_id` = `User`.`id`) WHERE 1 = 1;
+
+show tables;
