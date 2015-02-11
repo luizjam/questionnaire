@@ -33,11 +33,9 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller 
 {
     public $components = array(
-        'Acl',
         'Auth' => array(
-            'authorize' => array(
-                'Actions' => array('actionPath' => 'controllers')
-            )
+            'loginRedirect' => array('controller' => 'editais', 'action' => 'index'),
+            'logoutRedirect' => array('controller' => 'pages', 'action' => 'display', 'home')
         ),
         'Paginator',
         'Session'

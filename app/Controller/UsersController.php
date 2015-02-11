@@ -9,6 +9,29 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController 
 {
+    public function beforeFilter() 
+    {
+        parent::beforeFilter();
+        $this->Auth->allow('addRepresentante', 'logout');
+    }
+            
+    public function login()
+    {
+        if($this->request->is('post'))
+        {
+            if($this->Auth->login())
+            {
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Session->setFlash(__('Sua senha ou usuário estão incorretos'));
+        }
+    }
+        
+    public function logout()
+    {
+        $this->Session->setFlash('Good-Bye');
+        $this->redirect($this->Auth->logout());
+    }  
     
 /**
  * index method
@@ -27,12 +50,14 @@ class UsersController extends AppController
  * @param string $id
  * @return void
  */
-    public function view($id = null) {
-            if (!$this->User->exists($id)) {
-                    throw new NotFoundException(__('Invalid user'));
-            }
-            $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-            $this->set('user', $this->User->find('first', $options));
+    public function view($id = null) 
+    {
+        if (!$this->User->exists($id)) 
+        {
+            throw new NotFoundException(__('Invalid user'));
+        }
+        $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+        $this->set('user', $this->User->find('first', $options));
     }
 
 /**
@@ -40,18 +65,23 @@ class UsersController extends AppController
  *
  * @return void
  */
-    public function add() {
-            if ($this->request->is('post')) {
-                    $this->User->create();
-                    if ($this->User->saveAll($this->request->data)) {
-                            $this->Session->setFlash(__('The user has been saved.'));
-                            return $this->redirect(array('action' => 'index'));
-                    } else {
-                            $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-                    }
+    public function addRepresentante() 
+    {
+        if ($this->request->is('post')) 
+        {
+            $this->User->create();
+            if ($this->User->saveAll($this->request->data)) 
+            {
+                $this->Session->setFlash(__('The user has been saved.'));
+                return $this->redirect(array('action' => 'index'));
+            } 
+            else 
+            {
+                $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
             }
-            $groups = $this->User->Group->find('list');
-            $this->set(compact('groups'));
+        }
+        $groups = $this->User->Group->find('list');
+        $this->set(compact('groups'));
     }
 
 /**
@@ -61,23 +91,31 @@ class UsersController extends AppController
  * @param string $id
  * @return void
  */
-    public function edit($id = null) {
-            if (!$this->User->exists($id)) {
-                    throw new NotFoundException(__('Invalid user'));
+    public function edit($id = null) 
+    {
+        if (!$this->User->exists($id)) 
+        {
+            throw new NotFoundException(__('Usuário inválido.'));
+        }
+        if ($this->request->is(array('post', 'put'))) 
+        {
+            if ($this->User->save($this->request->data)) 
+            {
+                $this->Session->setFlash(__('Usuário salvo.'));
+                return $this->redirect(array('action' => 'index'));
+            } 
+            else 
+            {
+                $this->Session->setFlash(__('Inpossível salvar usuário. Por favor, tente novamente.'));
             }
-            if ($this->request->is(array('post', 'put'))) {
-                    if ($this->User->save($this->request->data)) {
-                            $this->Session->setFlash(__('The user has been saved.'));
-                            return $this->redirect(array('action' => 'index'));
-                    } else {
-                            $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-                    }
-            } else {
-                    $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-                    $this->request->data = $this->User->find('first', $options);
-            }
-            $groups = $this->User->Group->find('list');
-            $this->set(compact('groups'));
+        } 
+        else 
+        {
+            $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+            $this->request->data = $this->User->find('first', $options);
+        }
+        $groups = $this->User->Group->find('list');
+        $this->set(compact('groups'));
     }
 
 /**
@@ -87,41 +125,23 @@ class UsersController extends AppController
  * @param string $id
  * @return void
  */
-    public function delete($id = null) {
-            $this->User->id = $id;
-            if (!$this->User->exists()) {
-                    throw new NotFoundException(__('Invalid user'));
-            }
-            $this->request->allowMethod('post', 'delete');
-            if ($this->User->delete()) {
-                    $this->Session->setFlash(__('The user has been deleted.'));
-            } else {
-                    $this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
-            }
-            return $this->redirect(array('action' => 'index'));
-    }
-        
-    public function login()
+    public function delete($id = null) 
     {
-        if($this->request->is('post'))
+        $this->User->id = $id;
+        if (!$this->User->exists()) 
         {
-            if($this->Auth->login())
-            {
-                return $this->redirect($this->Auth->redirectUrl());
-            }
-            $this->Session->setFlash(__('Sua senha ou usuário estão incorretos'));
+            throw new NotFoundException(__('Invalid user'));
         }
+        $this->request->allowMethod('post', 'delete');
+        if ($this->User->delete()) 
+        {
+            $this->Session->setFlash(__('The user has been deleted.'));
+        } 
+        else 
+        {
+            $this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
+        }
+        return $this->redirect(array('action' => 'index'));
     }
-        
-    public function logout()
-    {
-        $this->Session->setFlash('Good-Bye');
-        $this->redirect($this->Auth->logout());
-    }
-        
-    public function beforeFilter() 
-    {
-        parent::beforeFilter();
-        $this->Auth->allow();
-    }   
+
 }
