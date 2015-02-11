@@ -16,7 +16,7 @@ class User extends AppModel
  */
     public $displayField = 'username';
     
-    public $actAs = array('Acl' => array('type' => 'requester'));
+    //public $actAs = array('Acl' => array('type' => 'requester'));
 
 /**
  * Validation rules
@@ -120,7 +120,8 @@ class User extends AppModel
         return true;
     }
     
-    public function parentNode() {
+    public function parentNode() 
+    {
         if (!$this->id && empty($this->data)) {
             return null;
         }
